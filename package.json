@@ -1,0 +1,38 @@
+{
+  "name": "tennis-app",
+  "version": "1.0.0",
+  "description": "Monorepo for tennis application",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "lint:fix": "yarn run lint -s -- --fix",
+    "lint": "eslint . --cache --ext=js,jsx,ts,tsx",
+    "clean": "rm -rf node_modules",
+    "start": "lerna run start --stream",
+    "deploy": "lerna run deploy",
+    "build": "lerna run build",
+    "test": "lerna run test"
+  },
+  "repository": "https://github.com/hamdislim/tennis-app",
+  "author": "hamdislim <sl.hamdi.slim@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.26",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "lerna": "^4.0.0",
+    "prettier": "^2.6.2",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.3"
+  }
+
+}

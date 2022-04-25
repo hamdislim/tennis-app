@@ -1,0 +1,14 @@
+.eslintrc.js
+packages/**/node_modules
+packages/**/dist
+packages/**/lib
+packages/**/.cache
+packages/**/public
+services/**/node_modules
+services/**/dist
+services/**/lib
+services/**/.cache
+services/**/public
+node_modules/
+public
+.prettierrc

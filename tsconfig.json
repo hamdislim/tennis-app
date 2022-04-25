@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    // Enable strict test settings like strictNullChecks & noImplicitAny.
+    // "strict": true,
+    "noImplicitAny": true,
+    // Search under node_modules for non-relative imports.
+    "moduleResolution": "node",
+    // Process & infer types from .js files.
+    "allowJs": true,
+    "removeComments": true,
+    // Import non-ES modules as default imports.
+    "esModuleInterop": true,
+    "declaration": true,
+    // Don't emit; allow Babel to transform files.
+    "noEmit": true,
+    // Target lowest common denominator.
+    "target": "es6",
+    "jsx": "react",
+    "outDir": "./dist/ts",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "lib": ["es2019", "dom"]
+  },
+  "include": ["packages/*", "services/*"],
+  "exclude": [
+    "node_modules",
+    "./node_modules**/*",
+    "./**/*.spec.*",
+    "./**/*.test.*",
+    "./**/*.stories.*"
+  ]
+}
