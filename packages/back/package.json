@@ -12,24 +12,25 @@
     "lint": "eslint --ext .ts --ext .tsx src --color",
     "lint:changed": "eslint --ext .ts --ext .tsx src",
     "lint:fix": "eslint --fix --ext .ts --ext .tsx src",
-    "precommit": "lint-staged && yarn test"
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
     "express": "^4.17.3"
   },
   "lint-staged": {
-    "**/*.ts": [
-      "yarn lint",
-      "git add"
+    "src/**/*.{ts,js}": [
+      "npm run prettier",
+      "npm run lint",
+      "git add -A"
     ]
   },
-
   "devDependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.9",
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.11",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "eslint": "^8.14.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
