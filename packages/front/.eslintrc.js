@@ -35,14 +35,17 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    "comma-dangle": "off",
-    "@typescript-eslint/comma-dangle": [2, {
-      "arrays": "never",
-      "objects": "always-multiline",
-      "imports": "never",
-      "exports": "never",
-      "functions": "never"
-    }]
+    'comma-dangle': 'off',
+    '@typescript-eslint/comma-dangle': [
+      2,
+      {
+        arrays: 'never',
+        objects: 'always-multiline',
+        imports: 'never',
+        exports: 'never',
+        functions: 'never',
+      },
+    ],
   },
   settings: {
     'import/resolver': {

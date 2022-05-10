@@ -23,5 +23,23 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['warn'],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+   ],
+   indent: [
+    'error',
+    4,
+    {
+      SwitchCase: 1,
+      ignoredNodes: ['ConditionalExpression'],
+    },
+  ],
   },
 };

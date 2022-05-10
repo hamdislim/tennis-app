@@ -4,9 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "npx babel src -d build",
-    "start": "nodemon src/index.ts",
-    "test": "jest",
+    "dev": "nodemon src/index.ts",
+    "devtest": "jest --setupFiles=dotenv/config --watchAll",
+    "build": "tsc",
+    "postbuild": "copyfiles src/**/*.yaml  -u 1  built/",
+    "start": "tsc&&node built/index.js",
+    "test": "jest --setupFiles=dotenv/config --coverage --forceExit",
     "prettier": "prettier src --check",
     "prettier:fix": "prettier src --write",
     "lint": "eslint --ext .ts --ext .tsx src --color",
@@ -15,13 +18,27 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@apidevtools/swagger-parser": "^10.0.3",
+    "axios": "^0.27.1",
     "body-parser": "^1.20.0",
-    "express": "^4.17.3"
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "copyfiles": "^2.4.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-openapi-validator": "^4.13.7",
+    "perf_hooks": "^0.0.1",
+    "request-promise-native": "^1.0.9",
+    "swagger-parser": "^10.0.3",
+    "swagger-routes-express": "^3.3.1",
+    "swagger-ui-express": "^4.3.0",
+    "yamljs": "^0.3.0"
   },
   "lint-staged": {
     "src/**/*.{ts,js}": [
-      "npm run prettier",
-      "npm run lint",
+      "yarn run prettier",
+      "yarn run lint",
       "git add -A"
     ]
   },
@@ -30,15 +47,22 @@
     "@babel/core": "^7.17.9",
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.11",
+    "@types/jest": "^27.5.0",
+    "@types/supertest": "^2.0.12",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "eslint": "^8.14.0",
     "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "jest": "^28.0.0",
+    "jest": "^28.1.0",
+    "jest-openapi": "^0.14.2",
     "lint-staged": "^12.4.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.6.2",
-    "supertest": "^6.2.2",
+    "supertest": "^6.2.3",
+    "ts-jest": "^28.0.2",
     "ts-node": "^10.7.0"
   }
 }
