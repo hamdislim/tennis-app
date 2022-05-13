@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-return */
 import { request } from '../helpers';
 import runtimeVars from '../config/runtimeVars';
 import CustomError from '../dtos/customError';
@@ -17,6 +18,8 @@ const dataProvider = async (): Promise<Player[]> => {
                 if (!validatedPlayer.error) {
                     return player;
                 }
+                // eslint-disable-next-line consistent-return
+                return;
             })
         );
         return players;

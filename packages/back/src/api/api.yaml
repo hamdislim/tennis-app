@@ -207,14 +207,12 @@ components:
                 generatedDate:
                     type: string
                     description:
-                        The ISO8601 date and time representing the start of the healthcheck
-                        report
+                        The ISO8601 date and time representing the start of the healthcheck report
                     format: date-time
                 durationInMillis:
                     type: number
                     description:
-                        The number of milliseconds that the healthecheck report took
-                        to generate
+                        The number of milliseconds that the healthecheck report took to generate
                 tests:
                     type: array
                     items:

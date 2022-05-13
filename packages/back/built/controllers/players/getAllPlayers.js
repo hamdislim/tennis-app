@@ -13,21 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dataProvider_1 = __importDefault(require("../../services/dataProvider"));
-const validateAndConvert_1 = __importDefault(require("../../helpers/validateAndConvert"));
-const Player_1 = __importDefault(require("../../dtos/Player"));
 const customError_1 = __importDefault(require("../../dtos/customError"));
 const getAllPlayers = (limit, skip) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let players;
-        const data = yield (0, dataProvider_1.default)();
-        const total = data.players.length;
+        let players = yield (0, dataProvider_1.default)();
+        const total = players.length;
         if (total > 0) {
-            players = yield Promise.all(data.players.map((player) => __awaiter(void 0, void 0, void 0, function* () {
-                const validatedPlayer = yield (0, validateAndConvert_1.default)(Player_1.default, player);
-                if (!validatedPlayer.error) {
-                    return player;
-                }
-            })));
             if (skip > 0)
                 players = players.slice(skip);
             if (limit < total)

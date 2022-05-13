@@ -23,7 +23,7 @@ const getPlayer = (req, res, next) => __awaiter(void 0, void 0, void 0, function
         const { data } = yield (0, getPlayer_1.default)(Number.parseInt(playerId, 10));
         if (!data || !data.id)
             throw new customError_1.default('NOT_FOUND', 404);
-        res.status(200).send({
+        return res.status(200).send({
             data,
         });
     }

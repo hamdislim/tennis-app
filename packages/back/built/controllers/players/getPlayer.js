@@ -13,22 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dataProvider_1 = __importDefault(require("../../services/dataProvider"));
-const validateAndConvert_1 = __importDefault(require("../../helpers/validateAndConvert"));
-const Player_1 = __importDefault(require("../../dtos/Player"));
 const customError_1 = __importDefault(require("../../dtos/customError"));
 const getPlayer = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let players;
         let player;
-        const data = yield (0, dataProvider_1.default)();
-        if (data.players.length > 0) {
-            players = yield Promise.all(data.players.map((pl) => __awaiter(void 0, void 0, void 0, function* () {
-                const validatedPlayer = yield (0, validateAndConvert_1.default)(Player_1.default, pl);
-                if (!validatedPlayer.error) {
-                    return pl;
-                }
-            })));
-            player = players.find((pl) => { return pl.id === id; });
+        const players = yield (0, dataProvider_1.default)();
+        if (players.length > 0) {
+            player = players.find((pl) => pl.id === id);
         }
         return {
             data: player,

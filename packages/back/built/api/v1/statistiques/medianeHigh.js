@@ -19,7 +19,7 @@ const medianeHigh = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
         const mediane = yield (0, medianeHigh_1.default)();
         if (!mediane)
             throw new customError_1.default('NOT_FOUND', 404);
-        res.status(200).send({
+        return res.status(200).send({
             mediane,
         });
     }

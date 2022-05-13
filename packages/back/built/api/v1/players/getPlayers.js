@@ -23,7 +23,7 @@ const getPlayers = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         const { data, total } = yield (0, getAllPlayers_1.default)(limit, skip);
         if (!data || total === 0)
             throw new customError_1.default('NOT_FOUND', 404);
-        res.status(200).send({
+        return res.status(200).send({
             data,
             total,
             warnings,

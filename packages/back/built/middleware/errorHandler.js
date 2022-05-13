@@ -10,6 +10,8 @@ const errorHandler = (err, req, res, next) => {
         customError = new customError_1.default('Internal Server Error', 500);
     }
     console.log('heeer');
-    res.status(customError.status).send({ message: customError.name });
+    res.status(customError.status).send({
+        message: customError.name,
+    });
 };
 exports.default = errorHandler;

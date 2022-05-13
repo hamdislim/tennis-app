@@ -5,17 +5,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const isNumber_1 = __importDefault(require("./isNumber"));
 const defaultValue = 10;
-const limitHandler = (req, warnings) => {
+const limitHandler = (req, warnings = {}) => {
     if (!req.query)
         return defaultValue;
     const { limit } = req.query;
     if (!limit)
         return defaultValue;
-    if (typeof limit === "string" && (0, isNumber_1.default)(limit)) {
+    if (typeof limit === 'string' && (0, isNumber_1.default)(limit)) {
         return Number.parseInt(limit, 10);
     }
     if (warnings)
-        warnings.skip = "ignored: must be integer";
+        warnings.limit = 'ignored: must be integer';
     return defaultValue;
 };
 exports.default = limitHandler;

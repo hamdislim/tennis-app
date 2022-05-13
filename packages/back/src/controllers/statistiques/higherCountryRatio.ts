@@ -20,9 +20,12 @@ const higherCountryRatio = async (): Promise<{
                 );
                 // if country exists only recalculate the ratio
                 if (index !== -1) {
-                    const rat = pl.data.last.reduce((a, b) => a + b, 0) * 100;
+                    const rat =
+                        (pl.data.last.reduce((a, b) => a + b, 0) * 100) /
+                        pl.data.last.length;
                     countries[index].ratio = (countries[index].ratio + rat) / 2;
                 }
+
                 // if country does not exists calculate the ratio and push it to the list
                 else {
                     countries.push({

@@ -13,35 +13,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const customError_1 = __importDefault(require("../../dtos/customError"));
-const Player_1 = __importDefault(require("../../dtos/Player"));
-const validateAndConvert_1 = __importDefault(require("../../helpers/validateAndConvert"));
 const dataProvider_1 = __importDefault(require("../../services/dataProvider"));
 const medianeHigh = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        //get All players
-        const data = yield (0, dataProvider_1.default)();
-        //if players exists
-        if (data.players.length > 0) {
-            //convert data to type player
-            let players = yield Promise.all(data.players.map((pl) => __awaiter(void 0, void 0, void 0, function* () {
-                const validatedPlayer = yield (0, validateAndConvert_1.default)(Player_1.default, pl);
-                if (!validatedPlayer.error) {
-                    return pl;
-                }
-            })));
+        // get All players
+        const players = yield (0, dataProvider_1.default)();
+        // if players exists
+        if (players.length > 0) {
             // sort table with the players height
             players.sort((a, b) => a.data.height - b.data.height);
             // if the table length is an even number
             if (players.length % 2 === 0) {
                 return players[players.length / 2].data.height;
-                // if the table length is an odd number    
+                // if the table length is an odd number
             }
-            else {
-                return (players[Math.trunc(players.length / 2)].data.height +
-                    players[Math.trunc(players.length / 2) + 1].data.height) /
-                    2;
-            }
+            return ((players[Math.trunc(players.length / 2)].data.height +
+                players[Math.trunc(players.length / 2) + 1].data.height) /
+                2);
         }
+        return 0;
     }
     catch (e) {
         throw new customError_1.default('Internal Server Error', 500);

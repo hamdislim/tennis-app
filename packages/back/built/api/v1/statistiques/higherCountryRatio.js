@@ -19,7 +19,7 @@ const higherCountryRatio = (req, res, next) => __awaiter(void 0, void 0, void 0,
         const data = yield (0, higherCountryRatio_1.default)();
         if (!data || !data.country)
             throw new customError_1.default('NOT_FOUND', 404);
-        res.status(200).send({
+        return res.status(200).send({
             data,
         });
     }

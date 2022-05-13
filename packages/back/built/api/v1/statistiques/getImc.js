@@ -19,7 +19,7 @@ const getImc = (req, res, next) => __awaiter(void 0, void 0, void 0, function* (
         const imc = yield (0, getImc_1.default)();
         if (!imc)
             throw new customError_1.default('NOT_FOUND', 404);
-        res.status(200).send({
+        return res.status(200).send({
             imc,
         });
     }

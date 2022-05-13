@@ -14,6 +14,6 @@ const middlewares = {
         extended: true,
     }),
     documentation: documentation_1.default,
-    errorHandler: errorHandler_1.default
+    errorHandler: errorHandler_1.default,
 };
 exports.default = middlewares;
