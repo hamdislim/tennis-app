@@ -16,6 +16,7 @@ const Item = (props: Props) => {
     return (
         <Col xs={{ span: 22, offset: 1 }} lg={{ span: 10, offset: 2 }}>
             <Card
+                data-testid="clickCard"
                 role="button"
                 tabIndex={0}
                 onClick={routeChange}

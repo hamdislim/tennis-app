@@ -8,13 +8,11 @@ import runtimeVars from '../configs/runTimeVars';
 const useGetPlayer = (id: string | undefined) => {
     const navigate = useNavigate();
     let playerId = 0;
-    console.info('heer', id);
     if (typeof id === 'string' && isNumber(id)) {
         playerId = Number.parseInt(id, 10);
     } else {
         navigate('/home');
     }
-    console.info('playerId', playerId);
 
     const [player, setPlayer] = useState<IPlayer>();
     const [loading, setLoading] = useState(true);
@@ -25,7 +23,6 @@ const useGetPlayer = (id: string | undefined) => {
                 const response = await axios.get(
                     `${runtimeVars.BACKEND_BASE_URL}/player/${playerId}`
                 );
-
                 setPlayer(response.data.data);
                 setLoading(false);
             } catch (error) {

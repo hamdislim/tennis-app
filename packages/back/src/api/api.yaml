@@ -12,28 +12,6 @@ servers:
     - url: http://localhost:5000/api/v1
       description: Production
 paths:
-    /healthcheck:
-        get:
-            summary: Instance health
-            description: This operation performs a healthcheck of this particular service and all services on which it depends.
-            security:
-                - bearerAuth: []
-            tags:
-                - health
-            operationId: getHealth
-            responses:
-                200:
-                    description: Service and all dependencies are healthy
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Healthcheck'
-                503:
-                    description: Service or any dependencies are unhealthy
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Healthcheck'
     /players:
         get:
             summary: Returns the players for a customer paginated.
@@ -201,44 +179,6 @@ paths:
                     description: Service or a dependency is unhealthy
 components:
     schemas:
-        Healthcheck:
-            type: object
-            properties:
-                generatedDate:
-                    type: string
-                    description:
-                        The ISO8601 date and time representing the start of the healthcheck report
-                    format: date-time
-                durationInMillis:
-                    type: number
-                    description:
-                        The number of milliseconds that the healthecheck report took to generate
-                tests:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/HealthcheckTest'
-        HealthcheckTest:
-            type: object
-            properties:
-                testName:
-                    type: string
-                    description: The name of the test or endpoint.
-                testedDate:
-                    type: string
-                    description: The IS08601 date and time representing the start of the test
-                    format: date-time
-                testResult:
-                    type: string
-                    description: The result of running the test
-                    enum:
-                        - passed
-                        - failed
-                durationInMillis:
-                    type: number
-                    description: The number of milliseconds that the test took to executed
-                error:
-                    type: string
-                    description: A string describing any error conditions that were experienced
         Player:
             type: object
             properties:

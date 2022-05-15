@@ -6,5 +6,9 @@
   ],
   "useWorkspaces": true,
   "version": "0.0.0",
-  "stream": true
+  "stream": true,
+  "lerna-dockerize": {
+    "templateDockerfileName": "Dockerfile.template",
+    "baseDockerfileName": "Dockerfile.base"
+  }
 }

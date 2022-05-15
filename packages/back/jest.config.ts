@@ -6,7 +6,7 @@ module.exports = {
     clearMocks: true,
     moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
     roots: ['<rootDir>/tests'],
-    testMatch: ['<rootDir>/tests/**/*.test.ts', '<rootDir>/tests/**/*.test.js'],
+    testMatch: ['<rootDir>/tests/api/**/*.test.ts', '<rootDir>/tests/**/*.test.js'],
     testEnvironment: 'node',
     transform: {
         '^.+\\.tsx?$': 'ts-jest',
