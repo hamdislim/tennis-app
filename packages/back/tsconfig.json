@@ -4,13 +4,15 @@
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
-    "allowJs": true,
+   // "allowJs": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "outDir": "./dist",
-    "rootDir": "src"
+    "outDir": "./built",
+    "rootDir": "src",
+    "experimentalDecorators": true,
+    "jsx": "react"
   },
-  "include": ["src/**/*"],
+  "include": ["./src/**/*"],
   "exclude": [
     "node_modules",
     "./node_modules**/*",

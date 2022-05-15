@@ -1,0 +1,17 @@
+.first-name {
+    text-shadow: 2px 2px 0px  #F2753B, -2px -2px 0px  #F2753B, 2px -2px 0px  #F2753B, -2px 2px 0px  #F2753B;
+    color: white !important;
+    margin-bottom: 0em !important;
+    font-size: 6em !important;
+}
+.last-name {
+    color: #F2753B !important;
+    margin-bottom: 0em !important;
+    font-size: 6em !important;
+}
+.ant-modal-body {
+    @media screen and (max-width: 480px) {
+        margin-top: 5%;
+    }
+ 
+}

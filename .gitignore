@@ -21,7 +21,7 @@ lib-cov
 # misc
 .DS_Store
 .idea
-
+.vscode
 # Coverage directory used by tools like istanbul
 coverage
 *.lcov

@@ -1,0 +1,299 @@
+openapi: 3.0.1
+info:
+    title: Tennis APP  API
+    description: This service provides tennis players statics.
+    contact:
+        name: Slim HAMDI
+        email: sl.hamdi.slim@gmail.com
+    version: 1.0.0
+servers:
+    - url: /api/v1
+      description: Current Server
+    - url: http://localhost:5000/api/v1
+      description: Production
+paths:
+    /healthcheck:
+        get:
+            summary: Instance health
+            description: This operation performs a healthcheck of this particular service and all services on which it depends.
+            security:
+                - bearerAuth: []
+            tags:
+                - health
+            operationId: getHealth
+            responses:
+                200:
+                    description: Service and all dependencies are healthy
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Healthcheck'
+                503:
+                    description: Service or any dependencies are unhealthy
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Healthcheck'
+    /players:
+        get:
+            summary: Returns the players for a customer paginated.
+            description: Fetches  players for a specific paginated.
+            security:
+                - bearerAuth: []
+            tags:
+                - customer
+            operationId: getPlayers
+            parameters:
+                - name: limit
+                  in: query
+                  required: false
+                  description: Number of works to return per page. Value must be from 1 to 50
+                  schema:
+                      type: string
+                      default: 10
+                - name: skip
+                  in: query
+                  required: false
+                  description: Number of works that are alrady returnd.
+                  schema:
+                      type: string
+                      default: 0
+                  allowEmptyValue: true
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    total:
+                                        type: number
+                                    data:
+                                        type: array
+                                        items:
+                                            $ref: '#/components/schemas/Player'
+                                    warnings:
+                                        type: object
+                400:
+                    description: Bad request - The caller has provided a pagination header with bad boundaries
+                401:
+                    description: Caller did not have a valid token
+                403:
+                    description: Caller has a valid token but it not permitted to call this operation
+                503:
+                    description: Service or a dependency is unhealthy
+
+    /player/{playerId}:
+        get:
+            summary: Returns the player requested for a customer paginated.
+            description: Fetches  players for a specific player by id
+            security:
+                - authzero: []
+            operationId: getPlayer
+            tags:
+                - customer
+            parameters:
+                - name: playerId
+                  in: path
+                  required: true
+                  description: The id of the player.
+                  schema:
+                      type: number
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Player'
+                400:
+                    description: Bad request - The caller has provided a pagination header with bad boundaries
+                401:
+                    description: Caller did not have a valid token
+                403:
+                    description: Caller has a valid token but it not permitted to call this operation
+                503:
+                    description: Service or a dependency is unhealthy
+    /statistiques/higher-country-ratio:
+        get:
+            summary: Returns the highest country ratio of games won  for a customer.
+            description: Fetches  players for a specific highest country ratio.
+            security:
+                - bearerAuth: []
+            tags:
+                - customer
+            operationId: higherCountryRatio
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    country:
+                                        type: string
+                                    ratio:
+                                        type: number
+                400:
+                    description: Bad request - The caller has provided a pagination header with bad boundaries
+                401:
+                    description: Caller did not have a valid token
+                403:
+                    description: Caller has a valid token but it not permitted to call this operation
+                503:
+                    description: Service or a dependency is unhealthy
+    /statistiques/get-imc:
+        get:
+            summary: Returns the average BMI of all players.
+            description: Fetches  players to get a the average BMI of all players.
+            security:
+                - bearerAuth: []
+            tags:
+                - customer
+            operationId: getImc
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    imc:
+                                        type: number
+                400:
+                    description: Bad request - The caller has provided a pagination header with bad boundaries
+                401:
+                    description: Caller did not have a valid token
+                403:
+                    description: Caller has a valid token but it not permitted to call this operation
+                503:
+                    description: Service or a dependency is unhealthy
+
+    /statistiques/mediane-high:
+        get:
+            summary: Returns the average BMI of all players.
+            description: Fetches  players to get a the average BMI of all players.
+            security:
+                - bearerAuth: []
+            tags:
+                - customer
+            operationId: medianeHigh
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    mediane:
+                                        type: number
+                400:
+                    description: Bad request - The caller has provided a pagination header with bad boundaries
+                401:
+                    description: Caller did not have a valid token
+                403:
+                    description: Caller has a valid token but it not permitted to call this operation
+                503:
+                    description: Service or a dependency is unhealthy
+components:
+    schemas:
+        Healthcheck:
+            type: object
+            properties:
+                generatedDate:
+                    type: string
+                    description:
+                        The ISO8601 date and time representing the start of the healthcheck report
+                    format: date-time
+                durationInMillis:
+                    type: number
+                    description:
+                        The number of milliseconds that the healthecheck report took to generate
+                tests:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/HealthcheckTest'
+        HealthcheckTest:
+            type: object
+            properties:
+                testName:
+                    type: string
+                    description: The name of the test or endpoint.
+                testedDate:
+                    type: string
+                    description: The IS08601 date and time representing the start of the test
+                    format: date-time
+                testResult:
+                    type: string
+                    description: The result of running the test
+                    enum:
+                        - passed
+                        - failed
+                durationInMillis:
+                    type: number
+                    description: The number of milliseconds that the test took to executed
+                error:
+                    type: string
+                    description: A string describing any error conditions that were experienced
+        Player:
+            type: object
+            properties:
+                id:
+                    type: number
+                    description: the id of the player
+                firstname:
+                    type: string
+                    description: firstname of the requested player
+                lastname:
+                    type: string
+                    description: lastname of the requested player
+                shortname:
+                    type: string
+                    description: shortname of the requested player
+                sex:
+                    type: string
+                    description: sex of the requested player M or F
+                country:
+                    type: object
+                    properties:
+                        picture:
+                            type: string
+                            description: picture of the player country
+                        code:
+                            type: string
+                            description: country code
+                picture:
+                    type: string
+                    description: player picture
+                data:
+                    type: object
+                    properties:
+                        rank:
+                            type: number
+                            description: player rank
+                        points:
+                            type: number
+                            description: number of collected points for the player
+                        weight:
+                            type: number
+                            description: player weight
+                        height:
+                            type: number
+                            description: player height
+                        age:
+                            type: number
+                            description: player age
+                        last:
+                            type: array
+                            description: array last sets
+                            items:
+                                type: number
+
+    securitySchemes:
+        bearerAuth:
+            type: http
+            scheme: bearer
