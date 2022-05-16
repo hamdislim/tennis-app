@@ -38,7 +38,7 @@ module.exports = {
                 extensions: ['.tsx'],
             },
         ],
-        'prettier/prettier':'off',
+        'prettier/prettier': 'off',
         'object-curly-newline': 'off',
         'import/extensions': [
             'error',
@@ -72,6 +72,7 @@ module.exports = {
                 code: 120,
             },
         ],
+
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': ['error'],
         'react-hooks/rules-of-hooks': 'error',
@@ -83,7 +84,9 @@ module.exports = {
     },
     settings: {
         'import/resolver': {
-            typescript: {},
+            node: {
+                extensions: ['.ts', '.tsx','.js','.jsx', '.native.js'],
+            },
         },
     },
-}
+};
