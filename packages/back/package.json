@@ -3,15 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "engines": {
-    "node": "14.17.0",
-    "npm": "7.24.2"
-  },
   "scripts": {
     "dev": "nodemon src/index.ts",
     "devtest": "jest --setupFiles=dotenv/config --watchAll",
     "build": "tsc",
-    "postbuild": "copyfiles src/**/*.yaml  -u 1 built/",
+    "postbuild": "copyfiles src/**/*.yaml  -u 1  built/",
     "start": "tsc&&node built/index.js",
     "test": "jest --setupFiles=dotenv/config --coverage --forceExit",
     "prettier": "prettier src --check",
