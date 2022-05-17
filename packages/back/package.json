@@ -11,7 +11,7 @@
     "dev": "nodemon src/index.ts",
     "devtest": "jest --setupFiles=dotenv/config --watchAll",
     "build": "tsc",
-    "postbuild": "copyfiles src/**/*.yaml  -u 1 built/",
+    "postbuild": "copyfiles src/**/*.yaml -u 1 built/",
     "start": "tsc&&node built/index.js",
     "test": "jest --setupFiles=dotenv/config --coverage --forceExit",
     "prettier": "prettier src --check",
